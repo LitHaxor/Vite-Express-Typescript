@@ -38,7 +38,6 @@ const editButton = document.querySelector<HTMLButtonElement>(".editor")!;
 editButton.addEventListener("click", async () => {
   if (!editor.readOnly.isEnabled) {
     const savedData = await editor.save();
-    console.log("saved", savedData);
     if (savedData) {
       await saveNotes(savedData as Notes);
     }

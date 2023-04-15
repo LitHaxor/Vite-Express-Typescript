@@ -1,5 +1,5 @@
 import express from "express";
-import { NotesRepository } from "../services/note.services";
+import { NotesRepository } from "../repository/note.services";
 
 const notes = express.Router();
 

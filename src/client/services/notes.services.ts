@@ -1,18 +1,20 @@
 import { Notes } from "src/types/notes";
+import {
+  getNotes as getNotesFake,
+  saveNotes as saveNotesFake,
+} from "./fake.api.service";
 
-export const getNotes = async (): Promise<Notes | null> => {
+export const getNotes = async (): Promise<Notes> => {
   try {
     const response = await fetch("/api/note");
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    return await getNotesFake();
   }
 };
 
-export const saveNotes = async (notes: Notes): Promise<Notes | null> => {
-  console.log(notes);
+export const saveNotes = async (notes: Notes): Promise<Notes> => {
   try {
     const response = await fetch("/api/note", {
       method: "POST",
@@ -24,7 +26,6 @@ export const saveNotes = async (notes: Notes): Promise<Notes | null> => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    return await saveNotesFake(notes);
   }
 };
